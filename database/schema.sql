@@ -1,4 +1,6 @@
--- create database biblioteca;
+drop database biblioteca;
+
+create database biblioteca;
 
 use biblioteca;
 
@@ -26,7 +28,7 @@ create table livro(
     id int auto_increment primary key,
     titulo varchar(100) not null,
     isbn varchar(20) unique,
-    ano_publicacao year,
+    ano_publicacao int,
     quantidade int not null default 0 check (quantidade >= 0),
     autor_id int, 
     categoria_id int,
