@@ -1,4 +1,4 @@
-drop database biblioteca;
+drop database if exists biblioteca;
 
 create database biblioteca;
 
@@ -32,8 +32,8 @@ create table livro(
     quantidade int not null default 0 check (quantidade >= 0),
     autor_id int, 
     categoria_id int,
-    foreign key (autor_id) references autor(id),
-    foreign key (categoria_id) references categoria(id)
+    foreign key (autor_id) references autor(id) on delete cascade,
+    foreign key (categoria_id) references categoria(id) on delete cascade
 );
 
 create table emprestimo(
@@ -44,6 +44,6 @@ create table emprestimo(
     data_prevista date not null,
     data_devolucao date,
     `status` varchar(20) not null default 'EMPRESTADO',
-    foreign key (usuario_id) references usuario(id),
-    foreign key (livro_id) references livro(id)
+    foreign key (usuario_id) references usuario(id) on delete cascade,
+    foreign key (livro_id) references livro(id) on delete cascade
 );
